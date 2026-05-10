@@ -4,9 +4,9 @@ import { WalletModalProvider, WalletMultiButton } from '@solana/wallet-adapter-r
 import { PhantomWalletAdapter, SolflareWalletAdapter } from '@solana/wallet-adapter-wallets';
 import { clusterApiUrl } from '@solana/web3.js';
 import axios from 'axios';
-import { Ghost, ShieldCheck, AlertCircle, Loader2, Link as LinkIcon, CheckCircle, Info, Scale, ArrowRightLeft, User, Activity } from 'lucide-react';
 
-import '@solana/wallet-adapter-react-ui/styles.css';
+// Configure Axios for Production
+axios.defaults.baseURL = import.meta.env.VITE_BACKEND_URL || '';
 
 const SignerContent = () => {
   const { publicKey, signMessage, connected } = useWallet();
