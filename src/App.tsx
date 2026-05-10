@@ -26,16 +26,17 @@ const SignerContent = () => {
     
     const amount = urlParams.get('amount');
     const intentId = urlParams.get('intentId');
-    const isLink = path.includes('link');
+    const modeParam = urlParams.get('mode');
+    const isLink = path.includes('link') || urlParams.get('link') === 'true';
     
-    if (path.includes('rebalance') || intentId) {
+    if (modeParam === 'rebalance' || path.includes('rebalance') || intentId) {
         setMode('rebalance');
         if (intentId) fetchRebalanceData(intentId);
-    } else if (path.includes('limit')) {
+    } else if (modeParam === 'limit' || path.includes('limit')) {
         setMode('limit');
-    } else if (path.includes('dca')) {
+    } else if (modeParam === 'dca' || path.includes('dca')) {
         setMode('dca');
-    } else if (path.includes('tpsl')) {
+    } else if (modeParam === 'tpsl' || path.includes('tpsl')) {
         setMode('tpsl');
     } else if (amount) {
         setMode('sign');
